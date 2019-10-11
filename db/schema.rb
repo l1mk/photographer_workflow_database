@@ -11,14 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191010194449) do
+ActiveRecord::Schema.define(version: 20191011143920) do
 
-  create_table "photographer", force: :cascade do |t|
+  create_table "clients", force: :cascade do |t|
+    t.text    "firstname"
+    t.text    "lastname"
+    t.text    "email"
+    t.text    "status"
+    t.integer "rating"
+  end
+
+  create_table "photographers", force: :cascade do |t|
     t.text "firstname"
     t.text "lastname"
     t.text "username"
     t.text "email"
     t.text "password_digest"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.text     "type"
+    t.integer  "price"
+    t.datetime "date"
+    t.integer  "photographer_id"
+    t.integer  "client_id"
   end
 
 end

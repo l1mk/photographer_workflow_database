@@ -1,1 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+  <a href="/"><title>Photographer Workflow Database</title></a>
+  </head>
+  <body>
+    <nav>
+      <% if logged_in? %>
 
+        <a href="/photographer/profile"> Profile </a>
+        <br>
+        <a href="/logout"> Log Out </a>
+        <p>Hello!, <%=current_user.firstname %></p>
+
+      <% else %>
+        <a href="/signup">Sign Up</a>
+        <a href="/login"> Sign In </a>
+      <%end %>
+
+    </nav>
+    <div class="container">
+
+
+      <%= yield %>
+
+
+
+  </body>
+</html>

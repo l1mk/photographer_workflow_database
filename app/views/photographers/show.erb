@@ -1,0 +1,26 @@
+<h1>Profile</h1>
+<h4> Full Name: </h4><p><%= current_user.firstname %>, <%= current_user.lastname %></P>
+<h4>Total of Sessions: </h4><p><%= current_user.sessions.count %></p>
+<h4>Total of Clients</h4><p><%= current_user.clients.count %></p>
+
+  <% total_completed = 0 %>
+  <% total_canceled = 0 %>
+  <% total_pending = 0 %>
+  <% current_user.clients.each |client| %>
+    <% if client.status == complete
+      <% total_completed += 1 %>
+    <% elsif client.status == canceled %>
+      <% total_canceled += 1 %>
+    <% elsif client.status == pending %>
+      <% total_pending += 1 %>
+    <% end %>
+  <% end %>
+<ul>
+  <li><h5>Total of Clients Completed: <h5><p><%= total_completed %></li>
+  <li><h5>Total of Clients Canceled: <h5><p><%= total_canceled %></li>
+  <li><h5>Total of Clients Pending: <h5><p><%= total_pending %></li>
+</ul>
+
+<h3><a href="/photographers/:slug/edit">Edit profile</a></h3>
+<h3><a href="/photographers/:slug/delete">Delete profile</a></h3>
+<h3><a href="/photograhers/welcome">Back to Welcome Page</a></h3>

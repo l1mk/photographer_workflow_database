@@ -1,0 +1,23 @@
+<h1> Welcome Page </h1>
+<br>
+<div>list of Sessions with links</div>
+<ul>
+<% current_user.sessions.each |session| %>
+<il><%= session.name %></il>
+</ul>
+<% end %>
+
+<a href="/sessions/new">Create New Session</a>
+<br>
+
+<div>list of Clients with links</div>
+<ul>
+<% current_user.clients.each |client| %>
+<il><%= client.name %></il>
+<il><%= client.status %></il>
+<il><%= client.rating %> Stars</il>
+</ul>
+<% end %>
+
+<a href="/sessions/new">Create New Client</a>
+<br>
