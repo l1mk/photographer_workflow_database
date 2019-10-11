@@ -1,17 +1,23 @@
 <h1> Welcome Page </h1>
 <br>
-<div>list of Sessions with links</div>
+<div>List of Sessions with links</div>
 <ul>
-lista de sesiones.each etc
+<% @sessions.each do |session| %>
+<li><a href="/sessions/<%= session.id %>"><%= session.date %></a></li>
+<p><%= session.type %></p>
+<% end %>
 </ul>
 
 
 <a href="/sessions/new">Create New Session</a>
 <br>
-
-<div>list of Clients with links</div>
+<br>
+<div>List of Clients with links</div>
 <ul>
-lista de clientes.each etc
+<% @clients.each do |client| %>
+<li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
+<p><%= client.status %></p>
+<% end %>
 </ul>
 
 

@@ -54,16 +54,17 @@ class PhotographersController < Sinatra::Base
       @sessions = Session.all
       @clients = Client.all
       erb :'photographers/edit'
+
     end
 
- patch '/photographers/:slug' do
+ patch "/photographers/:slug" do
 
    #if !params[:photographer].keys.include?("clients")
    #params[:photographers]["clients"] = []
    #end
 
    @photographer = Photographer.find_by_slug(params[:slug])
-   @photographer.update(params["photographer"])
+   @photographer.update(:firstname => params[:firstname], :lastname => params[:lastname], :username => params[:username], :email => params[:email], :password => params[:password])
 
      #if !params["session"]["type"].empty? && !params["session"]["price"].empty? && !params["session"]["date"].empty?
     #   if @session = Session.find_by(date: params["session"]["date"])
@@ -86,8 +87,7 @@ class PhotographersController < Sinatra::Base
      #elsif  @artist = Artist.find(params["artist"]["name"])
      #  @song.artist = @artist
      #  @song.save
-
-   redirect to "/photographers/#{@photographer.slug}"
+   redirect "/photographers/#{@photographer.slug}"
  end
 
  helpers do

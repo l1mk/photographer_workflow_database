@@ -7,10 +7,10 @@
     <nav>
       <% if logged_in? %>
 
-        <a href="/photographer/profile"> Profile </a>
+        <a href="/photographers/<%= current_user.slug %>"> Profile </a>
         <br>
         <a href="/logout"> Log Out </a>
-        <p>Hello!, <%=current_user.firstname %></p>
+        <p>Hello <%=current_user.firstname %>!</p>
 
       <% else %>
       <h1>Welcome to Photographer Workflow Database</h1>
