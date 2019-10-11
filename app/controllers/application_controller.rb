@@ -1,6 +1,7 @@
 require './config/environment'
 
 class ApplicationController < Sinatra::Base
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -17,7 +18,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
     erb :"photographers/new"
     else
-    redirect  "/welcome"
+    redirect  "/"
     end
   end
 #welcome screen after signup/sign in
@@ -25,7 +26,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
     erb :"photographers/login"
     else
-    redirect  "/welcome"
+    redirect  "/photographers"
     end
   end
 
