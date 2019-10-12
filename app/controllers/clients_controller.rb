@@ -26,10 +26,9 @@ class ClientsController < Sinatra::Base
   #take form params from new to create new client under the current user
     post "/clients" do
       if logged_in?
-        if !params[:firstname].empty? && !params[:lastname].empty? && !params[:status].empty? && !params[:email].empty? && !params[:rating].empty?
-          @photographer = current_user
-          @client = Client.new(:firstname => params[:firstname], :lastname => params[:lastname], :status => params[:status], :email => params[:email], :rating => params[:rating])
-          @client.photographer = @photographer
+        if !params[:firstname].empty? && !params[:lastname].empty? && !params[:email].empty?
+          @client = Client.new(:firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email])
+          @client.photographers << current_user
           @client.save
           redirect "/clients"
         else
@@ -57,7 +56,7 @@ class ClientsController < Sinatra::Base
   #take params from edit to update the data of the object
     patch "/clients/:id" do
         @client = Client.find_by_id(params[:id])
-      @client.update(:firstname => params[:firstname], :lastname => params[:lastname], :status => params[:status], :email => params[:email], :rating => params[:rating])
+      @client.update(:firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email])
       redirect "/clients"
     end
   #open up the delete website for client
@@ -66,10 +65,10 @@ class ClientsController < Sinatra::Base
       erb :'clients/delete'
     end
   #accept the request from delete, and delete object
-    delete '/client/:id' do
+    delete '/clients/:id' do
         @client = Client.find_by_id(params[:id])
         @client.delete
-        redirect to '/'
+        redirect to '/clients'
     end
 #Additional Methods for login authentication
     helpers do

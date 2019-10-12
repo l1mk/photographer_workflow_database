@@ -5,18 +5,20 @@
 <h4>Total of Sessions: </h4><p><%= @client.sessions.count %></p>
 <ul>
 <% @client.sessions.each do |session| %>
-<li><a href="/sessions/<%= session.id %>"><%= session.date %></a></li>
-<p>Type: <%= session.type %></p>
-<p>Price: <%= session.price %> $$$</p>
-<p>Duration: <%= session.duration %> hours</p>
+<li><a href="/sessions/<%= session.id %>"><%= session.type %></a></li>
+<p>Price: <%= session.price %> $$$.</p>
+<p>Rating: <%= session.rating %> Stars.</p>
+<p>Duration: <%= session.duration %> Hours.</p>
+<p>Location: <%= session.location %>.</p>
+<p>Date: <%= session.date %>.</p>
+<p>Status: <%= session.status %>.</p>
 <% end %>
 </ul>
 
 <h4>Photographers that worked with this client: </h4><p><%= @client.photographers.count %></p>
 <ul>
   <% @client.photographers.each do |photographer| %>
-  <li><a href="/photographers/<%= photographer.slug %>"><%= photographer.firstname %> <%= photographer.lastname %></li>
-  <li><%= photographer.email %></li>
+  <li><a href="/photographers/<%= photographer.slug %>"><%= photographer.firstname %> <%= photographer.lastname %> / <%= photographer.email %></a></li>
   <% end %>
 
 </ul>
@@ -25,3 +27,4 @@
 <h3><a href="/clients/<%= @client.id %>/delete">Delete profile</a></h3>
 <% end %>
 <h3><a href="/clients">BACK</a></h3>
+<h3><a href="/photographers">Back to Welcome Page</a></h3>

@@ -1,29 +1,34 @@
 <h1> Welcome Page </h1>
 <br>
+    <a href="/clients/new">Create New Client</a>
+    <br>
+    <a href="/sessions/new">Create New Session</a>
 
-  <div>List of Sessions with links</div>
+  <h3>List of Sessions with links</h3>
     <ul>
       <% @sessions.each do |session| %>
-      <li><a href="/sessions/<%= session.id %>"><%= session.date %></a></li>
-      <p><%= session.type %></p>
+      <li><a href="/sessions/<%= session.id %>">Session Type:<%= session.type %></a></li>
+      <p>Location: <%= session.location %></p>
+      <p>Date: <%= session.date %></p>
       <% end %>
     </ul>
-    <a href="/sessions/new">Create New Session</a>
 <br>
 <br>
-  <div>List of Clients with links</div>
+  <h3>List of Clients with links</h3>
     <ul>
       <% @clients.each do |client| %>
-      <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
-      <p><%= client.status %></p>
+      <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></a></li>
       <% end %>
     </ul>
-    <a href="/clients/new">Create New Client</a>
 <br>
 <br>
-  <div>List of Other Photographers with links</div>
+  <h3>List of All Photographers with links</h3>
     <ul>
       <% @photographers.each do |photographer| %>
-      <li><a href="/photographers/<%= photographer.slug %>"><%= photographer.firstname %> <%= photographer.lastname %></li>
+        <% if current_user.username == photographer.username %>
+        <li><%= photographer.firstname %> <%= photographer.lastname %></li>
+        <% else %>
+          <li><a href="/photographers/<%= photographer.slug %>"><%= photographer.firstname %> <%= photographer.lastname %></a></li>
+        <% end %>
       <% end %>
     </ul>
