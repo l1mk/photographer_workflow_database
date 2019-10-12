@@ -21,7 +21,6 @@ class PhotographersController < Sinatra::Base
   end
 
     post "/signup" do
-#binding.pry
       #if !params[:firstname].empty? && !params[:lastname].empty? && !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
         @photographer = Photographer.new(:firstname => params[:firstname], :lastname => params[:lastname], :username => params[:username], :email => params[:email], :password => params[:password])
           if @photographer.save
@@ -55,7 +54,6 @@ class PhotographersController < Sinatra::Base
       @sessions = Session.all
       @clients = Client.all
       erb :'photographers/edit'
-
     end
 
  patch "/photographers/:slug" do
@@ -88,9 +86,26 @@ class PhotographersController < Sinatra::Base
      #elsif  @artist = Artist.find(params["artist"]["name"])
      #  @song.artist = @artist
      #  @song.save
-   redirect "/photographers/#{@photographer.slug}"
+   redirect "/photographers"
  end
 
+ get "/photographers/:slug/delete" do
+   @photographer = Photographer.find_by_slug(params[:slug])
+   erb :'photographers/delete'
+ end
+
+ delete '/photographers/:slug' do #delete action
+   if logged_in?
+     @photographer = Photographer.find_by_slug(params[:slug])
+     session.clear
+     @photographer.delete
+     redirect to '/'
+   else
+    redirect to '/login'
+   end
+ end
+
+#Additional Methods for login authentication
  helpers do
    def logged_in?
      !!session[:photographer_id]
@@ -100,6 +115,5 @@ class PhotographersController < Sinatra::Base
      Photographer.find(session[:photographer_id])
    end
  end
-
 
 end

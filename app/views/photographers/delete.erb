@@ -1,0 +1,8 @@
+<h3>Are you Sure you Want to Erase <%= @photographer.firstname %> Profile </h3>
+
+<form action="/photographers/<%= @photographer.slug %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>
+<br>
+<a href="/photographers">BACK</a>
