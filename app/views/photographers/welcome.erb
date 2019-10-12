@@ -1,32 +1,29 @@
 <h1> Welcome Page </h1>
 <br>
-<div>List of Sessions with links</div>
-<ul>
-<% @sessions.each do |session| %>
-<li><a href="/sessions/<%= session.id %>"><%= session.date %></a></li>
-<p><%= session.type %></p>
-<% end %>
-</ul>
 
-
-<a href="/sessions/new">Create New Session</a>
+  <div>List of Sessions with links</div>
+    <ul>
+      <% @sessions.each do |session| %>
+      <li><a href="/sessions/<%= session.id %>"><%= session.date %></a></li>
+      <p><%= session.type %></p>
+      <% end %>
+    </ul>
+    <a href="/sessions/new">Create New Session</a>
 <br>
 <br>
-<div>List of Clients with links</div>
-<ul>
-<% @clients.each do |client| %>
-<li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
-<p><%= client.status %></p>
-<% end %>
-</ul>
-
-
-<a href="/clients/new">Create New Client</a>
+  <div>List of Clients with links</div>
+    <ul>
+      <% @clients.each do |client| %>
+      <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
+      <p><%= client.status %></p>
+      <% end %>
+    </ul>
+    <a href="/clients/new">Create New Client</a>
 <br>
-
-<div>List of Other Photographers with links</div>
-<ul>
-<% @photographers.each do |photographer| %>
-<li><a href="/photographers/<%= photographer.slug %>"><%= photographer.firstname %> <%= photographer.lastname %></li>
-<% end %>
-</ul>
+<br>
+  <div>List of Other Photographers with links</div>
+    <ul>
+      <% @photographers.each do |photographer| %>
+      <li><a href="/photographers/<%= photographer.slug %>"><%= photographer.firstname %> <%= photographer.lastname %></li>
+      <% end %>
+    </ul>

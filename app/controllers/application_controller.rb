@@ -1,7 +1,7 @@
 require './config/environment'
-
+#require 'pry'
 class ApplicationController < Sinatra::Base
-
+  #require configuration for sessions and password to work
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -29,7 +29,7 @@ class ApplicationController < Sinatra::Base
     redirect  "/photographers"
     end
   end
-
+#Request to clear all session and logout
   get "/logout" do
     if logged_in?
    session.clear
@@ -38,8 +38,7 @@ class ApplicationController < Sinatra::Base
       redirect "/"
     end
   end
-
-
+#Additional Methods for login authentication
   helpers do
     def logged_in?
       !!session[:photographer_id]

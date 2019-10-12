@@ -1,8 +1,18 @@
 <h1>Profile</h1>
-<h4> Full Name: </h4><p><%= @photographer.firstname %>, <%= @photographer.lastname %></P>
-<h4>Total of Sessions: </h4><p><%= @photographer.sessions.count %></p>
-<h4>Total of Clients</h4><p><%= @photographer.clients.count %></p>
 
+<h4> Full Name: </h4><p><%= @photographer.firstname %>, <%= @photographer.lastname %></P>
+
+<h4>Total of Sessions: </h4><p><%= @photographer.sessions.count %></p>
+<ul>
+<% current_user.sessions.each do |session| %>
+<li><a href="/sessions/<%= session.id %>"><%= session.date %></a></li>
+<p>Type: <%= session.type %></p>
+<p>Price: <%= session.price %> $$$</p>
+<p>Duration: <%= session.duration %> hours</p>
+<% end %>
+</ul>
+
+<h4>Total of Clients</h4><p><%= @photographer.clients.count %></p>
 <!-- Variables to count the different clients -->
 <% total_completed = 0 %>
 <% total_canceled = 0 %>
@@ -17,11 +27,18 @@
       <% total_pending += 1 %>
     <% end %>
   <% end %>
-
+<!-- end of logic -->
 <ul>
 <li><h5>Total of Clients Completed: <h5><p><%= total_completed %></li>
 <li><h5>Total of Clients Canceled: <h5><p><%= total_canceled %></li>
 <li><h5>Total of Clients Pending: <h5><p><%= total_pending %></li>
+</ul>
+<ul>
+  <% current_user.clients.each do |client| %>
+  <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
+  <p>Status: <%= client.status %></p>
+  <p>Rating: <%= client.rating %></p>
+  <% end %>
 </ul>
 <% if @photographer == current_user %>
 <h3><a href="/photographers/<%= @photographer.slug %>/edit">Edit profile</a></h3>

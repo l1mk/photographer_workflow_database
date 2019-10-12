@@ -1,0 +1,27 @@
+<h1>Client Profile</h1>
+
+<h4> Full Name: </h4><p><%= @client.firstname %>, <%= @client.lastname %></p>
+<h4> Email: </h4><p><%= @client.email %></p>
+<h4>Total of Sessions: </h4><p><%= @client.sessions.count %></p>
+<ul>
+<% @client.sessions.each do |session| %>
+<li><a href="/sessions/<%= session.id %>"><%= session.date %></a></li>
+<p>Type: <%= session.type %></p>
+<p>Price: <%= session.price %> $$$</p>
+<p>Duration: <%= session.duration %> hours</p>
+<% end %>
+</ul>
+
+<h4>Photographers that worked with this client: </h4><p><%= @client.photographers.count %></p>
+<ul>
+  <% @client.photographers.each do |photographer| %>
+  <li><a href="/photographers/<%= photographer.slug %>"><%= photographer.firstname %> <%= photographer.lastname %></li>
+  <li><%= photographer.email %></li>
+  <% end %>
+
+</ul>
+<% if @client.photographers.include?(current_user) %>
+<h3><a href="/clients/<%= @client.id %>/edit">Edit profile</a></h3>
+<h3><a href="/clients/<%= @client.id %>/delete">Delete profile</a></h3>
+<% end %>
+<h3><a href="/clients">BACK</a></h3>

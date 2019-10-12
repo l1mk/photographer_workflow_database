@@ -11,14 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191012193918) do
+ActiveRecord::Schema.define(version: 20191012211131) do
 
   create_table "clients", force: :cascade do |t|
-    t.text    "firstname"
-    t.text    "lastname"
-    t.text    "email"
-    t.text    "status"
-    t.integer "rating"
+    t.text "firstname"
+    t.text "lastname"
+    t.text "email"
   end
 
   create_table "photographers", force: :cascade do |t|
@@ -36,6 +34,7 @@ ActiveRecord::Schema.define(version: 20191012193918) do
     t.integer  "photographer_id"
     t.integer  "client_id"
     t.integer  "duration"
+    t.integer  "rating"
   end
 
 end
