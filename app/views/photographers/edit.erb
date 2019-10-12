@@ -1,6 +1,6 @@
 <h1>Edit Profile</h1>
 <br>
-
+<% if @photographer == current_user %>
  <form action='/photographers/<%= @photographer.slug %>' method="post">
  <input id="hidden" type="hidden" name="_method" value="patch">
    <br>
@@ -25,5 +25,10 @@
     <input type="submit" name="submit" id="submit">
 
   </form>
+  <br>
+  <% else %>
+  Sorry Cant Edit Someone else Profile
+  <% end %>
+  <br>
   <br>
   <a href="/photographers">BACK</a>

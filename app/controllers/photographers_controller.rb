@@ -11,6 +11,7 @@ class PhotographersController < Sinatra::Base
   get "/photographers" do
     if logged_in?
       @photographer = Photographer.find_by_id(session[:photographer_id])
+      @photographers = Photographer.all
       @sessions = Session.all
       @clients = Client.all
       erb :"/photographers/welcome"

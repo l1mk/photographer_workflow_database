@@ -23,3 +23,10 @@
 
 <a href="/clients/new">Create New Client</a>
 <br>
+
+<div>List of Other Photographers with links</div>
+<ul>
+<% @photographers.each do |photographer| %>
+<li><a href="/photographers/<%= photographer.slug %>"><%= photographer.firstname %> <%= photographer.lastname %></li>
+<% end %>
+</ul>

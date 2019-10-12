@@ -1,7 +1,7 @@
 <h1>Profile</h1>
-<h4> Full Name: </h4><p><%= current_user.firstname %>, <%= current_user.lastname %></P>
-<h4>Total of Sessions: </h4><p><%= current_user.sessions.count %></p>
-<h4>Total of Clients</h4><p><%= current_user.clients.count %></p>
+<h4> Full Name: </h4><p><%= @photographer.firstname %>, <%= @photographer.lastname %></P>
+<h4>Total of Sessions: </h4><p><%= @photographer.sessions.count %></p>
+<h4>Total of Clients</h4><p><%= @photographer.clients.count %></p>
 
 <!-- Variables to count the different clients -->
 <% total_completed = 0 %>
@@ -23,7 +23,8 @@
 <li><h5>Total of Clients Canceled: <h5><p><%= total_canceled %></li>
 <li><h5>Total of Clients Pending: <h5><p><%= total_pending %></li>
 </ul>
-
+<% if @photographer == current_user %>
 <h3><a href="/photographers/<%= @photographer.slug %>/edit">Edit profile</a></h3>
 <h3><a href="/photographers/<%= @photographer.slug %>/delete">Delete profile</a></h3>
+<% end %>
 <h3><a href="/photographers">Back to Welcome Page</a></h3>
