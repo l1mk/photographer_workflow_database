@@ -1,5 +1,5 @@
 require './config/environment'
-require 'pry'
+#require 'pry'
 
 class SessionsController < Sinatra::Base
 #require configuration for sessions and password to work
@@ -30,9 +30,11 @@ class SessionsController < Sinatra::Base
       if logged_in?
         if !params[:name].empty? && !params[:price].empty? && !params[:date].empty? && !params[:duration].empty? && !params[:rating].empty? && !params[:status].empty? && !params[:location].empty?
           @session = Session.new(:name => params[:name], :price => params[:price], :date => params[:date], :duration => params[:duration], :rating => params[:rating], :status => params[:status], :location => params[:location])
-          @client = Client.create(:firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email])
-          @clients.all
-          @session[:client_id] = @clients.last.id
+            if @client = Client.create(:firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email])
+              @session[:client_id] = @client.id
+            else
+              @session[:client_id] = (params[:client_id])
+            end
           @session[:photographer_id] = current_user.id
           @session.save
           redirect "/sessions"
@@ -46,7 +48,6 @@ class SessionsController < Sinatra::Base
 
 #open up the details page of the object
     get "/sessions/:id" do
-      binding.pry
       @session = Session.find_by_id(params[:id])
       @client = Client.find_by_id(@session.client_id)
       @photographer = Photographer.find_by_id(@session.photographer_id)
@@ -62,9 +63,7 @@ class SessionsController < Sinatra::Base
 #take params from edit to update the data of the object
     patch "/sessions/:id" do
       @session = Session.find_by_id(params[:id])
-      @session.update(:name => params[:name], :price => params[:price], :date => params[:date], :duration => params[:duration], :rating => params[:rating], :status => params[:status], :location => params[:location], :photographer_id => current_user.id)
-      @clients = Client.all
-      @session[:client_id] = @clients.last.id
+      @session.update(:name => params[:name], :price => params[:price], :date => params[:date], :duration => params[:duration], :rating => params[:rating], :status => params[:status], :location => params[:location], :client_id => params[:client_id])
     redirect "/sessions"
     end
 #open up the delete website for client

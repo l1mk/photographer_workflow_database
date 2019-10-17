@@ -13,37 +13,40 @@
     <br>
     <h3>Edit Date:</h3>
 
-    <input type="datetime" id="date" name="date" placeholder="Date of the Session" value="<%= @session.date %>">
+    <input type="date" id="date" name="date" placeholder="mm/dd/yyyy" value="<%= @session.date %>">
     <br>
     <h3>Edit Duration:</h3>
 
-    <input type="integer" id="duration" name="duration" placeholder="Lenght of the Session in Hours" value="<%= @session.duration %>">
+    <input type="integer" id="duration" name="duration" placeholder="Lenght in Hours" value="<%= @session.duration %>">
     <br>
     <h3>Edit Rating:</h3>
-
-    <input type="integer" id="rating" name="rating" placeholder="Rating for the Session" value="<%= @session.rating %>">
+    <input type="radio" name="rating" id="rating" value="1" <%= 'checked' if @session.rating == 1 %>>N/A</input>
+    <input type="radio" name="rating" id="rating" value="2" <%= 'checked' if @session.rating == 2 %>>Bad</input>
+    <input type="radio" name="rating" id="rating" value="3" <%= 'checked' if @session.rating == 3 %>>Ok</input>
+    <input type="radio" name="rating" id="rating" value="4" <%= 'checked' if @session.rating == 4 %>>Great</input>
     <br>
     <h3>Edit Location:</h3>
 
     <input type="text" id="location" name="location" placeholder="Location of the Session" value="<%= @session.location %>">
     <br>
     <h3>Edit Status:</h3>
-
-    <input type="text" id="status" name="status" placeholder="Status of the Session" value="<%= @session.status %>">
+    <input type="radio" name="status" id="status" value="Canceled" <%= 'checked' if @session.status == "Canceled"%>>Canceled</input>
+    <input type="radio" name="status" id="status" value="Pending" <%= 'checked' if @session.status == "Pending"%>>Pending</input>
+    <input type="radio" name="status" id="status" value="Completed" <%= 'checked' if @session.status == "Completed"%>>Completed</input>
     <br>
     <h3>Choose Client:</h3>
 
     <% @clients.each do |client| %>
-    <input type="checkbox" name="client_id" id="<%= client.id %>" value="<%= client.id %>"><%= client.firstname %> <%= client.lastname %></input><br>
+    <input type="radio" name="client_id" id="<%= client.id %>" value="<%= client.id %>" <%='checked' if @session.client == client %>><%= client.firstname %> <%= client.lastname %></input><br>
     <% end %>
     <br>
     <h3>or Create New Client:</h3>
     <input type="text" id="first_name" name="first_name" placeholder="First Name">
     <input type="text" id="last_name" name="last_name" placeholder="Last Name">
-    <input type="text" id="email" name="email" placeholder="Email Address">
+    <input type="email" id="email" name="email" placeholder="Email Address">
     <br>
     <br>
-    <input type="submit" name="submit" id="submit">
+    <input type="submit" name="submit" id="submit" value="Update">
   </form>
   <br>
   <% else %>
@@ -51,4 +54,4 @@
   <% end %>
   <br>
   <br>
-  <a href="/Sessions">BACK</a>
+  <a href="/sessions">BACK</a>

@@ -10,34 +10,34 @@
       <input type="text" id="location" name="location" placeholder="Location of the Session">
     <br>
     <h3>Date:</h3>
-      <input type="datetime" id="date" name="date" placeholder="Date of the Session">
+      <input type="date" id="date" name="date" placeholder="mm/dd/yyyy">
     <br>
     <h3>Duration:</h3>
-      <input type="integer" id="duration" name="duration" placeholder="Lenght of the Session in Hours">
+      <input type="integer" id="duration" name="duration" placeholder="Lenght in Hours">
     <br>
     <h3>Rating:</h3>
-      <input type="checkbox" name="rating" id="rating" value="1">Bad</input>
-      <input type="checkbox" name="rating" id="rating" value="2">Ok</input>
-      <input type="checkbox" name="rating" id="rating" value="3">Good</input>
-      <input type="checkbox" name="rating" id="rating" value="4">Excellent</input>
+      <input type="radio" name="rating" id="rating" value="1">N/A</input>
+      <input type="radio" name="rating" id="rating" value="2">Bad</input>
+      <input type="radio" name="rating" id="rating" value="3">Ok</input>
+      <input type="radio" name="rating" id="rating" value="4">Great</input>
     <br>
     <h3>Status:</h3>
-      <input type="checkbox" name="status" id="status" value="Canceled">Canceled</input>
-      <input type="checkbox" name="status" id="status" value="Pending">Pending</input>
-      <input type="checkbox" name="status" id="status" value="Completed">Completed</input>
+      <input type="radio" name="status" id="status" value="Canceled">Canceled</input>
+      <input type="radio" name="status" id="status" value="Pending">Pending</input>
+      <input type="radio" name="status" id="status" value="Completed">Completed</input>
     <br>
     <h3>Choose Client:</h3>
     <% @clients.each do |client| %>
-    <input type="checkbox" name="client_id" id="<%= client.id %>" value="<%= client.id %>"><%= client.firstname %> <%= client.lastname %></input><br>
+    <input type="radio" name="client_id" id="client_id" value="<%= client.id %>"><%= client.firstname %> <%= client.lastname %></input><br>
     <% end %>
     <br>
     <h3>or Create New Client:</h3>
     <input type="text" id="first_name" name="firstname" placeholder="First Name">
     <input type="text" id="last_name" name="lastname" placeholder="Last Name">
-    <input type="text" id="email" name="email" placeholder="Email Address">
+    <input type="email" id="email" name="email" placeholder="Email Address">
     <br>
     <br>
-    <input type="submit" name="submit" id="submit">
+    <input type="submit" name="submit" id="submit" value="Create">
   </form>
   <br>
   <br>
