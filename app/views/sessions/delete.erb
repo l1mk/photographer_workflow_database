@@ -1,0 +1,8 @@
+<h3>Are you Sure you Want to Erase the <%= @session.type %> done the <%= @session.date %> </h3>
+
+<form action="/sessions/<%= @session.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>
+<br>
+<a href="/sessions">BACK</a>

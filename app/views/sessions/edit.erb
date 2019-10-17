@@ -1,0 +1,53 @@
+<h1>Edit Session Profile</h1>
+<br>
+<% if @session.photographers.include?(current_user) %>
+ <form action='/sessions/<%= @session.id %>' method="post">
+ <input id="hidden" type="hidden" name="_method" value="patch">
+   <br>
+    <h3>Edit Type:</h3>
+    <br>
+    <input type="text" id="type" name="type" placeholder="Type of Session" value="<%= @session.type %>">
+    <br>
+    <h3>Edit Price:</h3>
+    <br>
+    <input type="integer" id="price" name="price" placeholder="Price for the Session" value="<%= @session.price %>">
+    <br>
+    <h3>Edit Date:</h3>
+    <br>
+    <input type="datetime" id="date" name="date" placeholder="Date of the Session" value="<%= @session.date %>">
+    <br>
+    <h3>Edit Duration:</h3>
+    <br>
+    <input type="integer" id="duration" name="duration" placeholder="Lenght of the Session in Hours" value="<%= @session.duration %>">
+    <br>
+    <h3>Edit Rating:</h3>
+    <br>
+    <input type="integer" id="rating" name="rating" placeholder="Rating for the Session" value="<%= @session.rating %>">
+    <br>
+    <h3>Edit Location:</h3>
+    <br>
+    <input type="text" id="location" name="location" placeholder="Location of the Session" value="<%= @session.location %>">
+    <br>
+    <h3>Edit Status:</h3>
+    <br>
+    <input type="text" id="status" name="status" placeholder="Status of the Session" value="<%= @session.status %>">
+    <br>
+    <h3>Edit Client:</h3>
+    <br>
+    <% @clients.each do |client| %>
+    <input type="checkbox" name="client_id" id="<%= client.id %>" value="<%= client.id %>"><%= client.name %></input><br>
+    <% end %>
+    <br>
+    <h3>or Create New Client:</h3>
+    <input type="text" id="first_name" name="first_name" value="First Name">
+    <input type="text" id="last_name" name="last_name" value="Last Name">
+    <input type="text" id="email" name="email" value="Email Address">
+    <input type="submit" name="submit" id="submit">
+  </form>
+  <br>
+  <% else %>
+  Sorry Cant Edit a Session Profile from another Photographer
+  <% end %>
+  <br>
+  <br>
+  <a href="/Sessions">BACK</a>
