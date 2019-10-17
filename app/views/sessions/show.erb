@@ -1,0 +1,27 @@
+<h1>Session Detail</h1>
+
+<h4> Name: </h4><p><%= @session.name %></p>
+
+<ul>
+<li><p>Name : <%= @session.name %></p></li>
+<li><p>Price: <%= @session.price %> $$$.</p></li>
+<li><p>Location: <%= @session.location %>.</p></li>
+<li><p>Date: <%= @session.date %>.</p></li>
+<li><p>Duration: <%= @session.duration %> Hours.</p></li>
+<li><p>Rating: <%= @session.rating %> Stars.</p></li>
+<li><p>Status: <%= @session.status %>.</p></li>
+</ul>
+
+<h4>By Photographer</h4>
+<a href="/photographers/<%= @photographer.slug %>"><%= @photographer.firstname %> <%= @photographer.lastname %></a></li>
+<br>
+<h4>For client</h4>
+<a href="/clients/<%= @client.id %>"><%= @client.firstname %> <%= @client.lastname %></a></li>
+<br>
+
+<% if @photographer == current_user %>
+<h3><a href="/sessions/<%= @session.id %>/edit">Edit Session</a></h3>
+<h3><a href="/sessions/<%= @session.id %>/delete">Delete Session</a></h3>
+<% end %>
+<h3><a href="/sessions">BACK</a></h3>
+<h3><a href="/photographers">Back to Welcome Page</a></h3>

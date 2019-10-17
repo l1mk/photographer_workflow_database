@@ -1,0 +1,44 @@
+<h2>New Session</h2>
+ <form action='/sessions' method="post">
+    <h3>Name:</h3>
+      <input type="text" id="name" name="name" placeholder="Type of Session">
+    <br>
+    <h3>Price:</h3>
+      <input type="integer" id="price" name="price" placeholder="Price for the Session">
+    <br>
+    <h3>Location:</h3>
+      <input type="text" id="location" name="location" placeholder="Location of the Session">
+    <br>
+    <h3>Date:</h3>
+      <input type="datetime" id="date" name="date" placeholder="Date of the Session">
+    <br>
+    <h3>Duration:</h3>
+      <input type="integer" id="duration" name="duration" placeholder="Lenght of the Session in Hours">
+    <br>
+    <h3>Rating:</h3>
+      <input type="checkbox" name="rating" id="rating" value="1">Bad</input>
+      <input type="checkbox" name="rating" id="rating" value="2">Ok</input>
+      <input type="checkbox" name="rating" id="rating" value="3">Good</input>
+      <input type="checkbox" name="rating" id="rating" value="4">Excellent</input>
+    <br>
+    <h3>Status:</h3>
+      <input type="checkbox" name="status" id="status" value="Canceled">Canceled</input>
+      <input type="checkbox" name="status" id="status" value="Pending">Pending</input>
+      <input type="checkbox" name="status" id="status" value="Completed">Completed</input>
+    <br>
+    <h3>Choose Client:</h3>
+    <% @clients.each do |client| %>
+    <input type="checkbox" name="client_id" id="<%= client.id %>" value="<%= client.id %>"><%= client.firstname %> <%= client.lastname %></input><br>
+    <% end %>
+    <br>
+    <h3>or Create New Client:</h3>
+    <input type="text" id="first_name" name="firstname" placeholder="First Name">
+    <input type="text" id="last_name" name="lastname" placeholder="Last Name">
+    <input type="text" id="email" name="email" placeholder="Email Address">
+    <br>
+    <br>
+    <input type="submit" name="submit" id="submit">
+  </form>
+  <br>
+  <br>
+<p><a href="/sessions">BACK</a></p>

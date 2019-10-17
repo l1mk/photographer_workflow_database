@@ -1,7 +1,7 @@
 <h2>Session Listing<h2>
   <ul>
     <% @sessions.each do |session| %>
-    <li><a href="/sessions/<%= session.id %>"><%= session.type %> <%= session.date %></a></li>
+    <li><a href="/sessions/<%= session.id %>"><%= session.name %> / <%= session.date %></a></li>
     <% end %>
   </ul>
   <a href="/sessions/new">Create New Session</a>

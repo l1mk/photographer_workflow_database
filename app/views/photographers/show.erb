@@ -5,12 +5,12 @@
 <h4>Total of Sessions: </h4><p><%= @photographer.sessions.count %></p>
 <ul>
 <% current_user.sessions.each do |session| %>
-<li><a href="/sessions/<%= session.id %>"><%= session.type %></a></li>
-<p>Price: <%= session.price %> $$$.</p>
-<p>Rating: <%= session.rating %> Stars.</p>
-<p>Duration: <%= session.duration %> Hours.</p>
+<li><a href="/sessions/<%= session.id %>"><%= session.name %></a></li>
 <p>Location: <%= session.location %>.</p>
 <p>Date: <%= session.date %>.</p>
+<p>Price: <%= session.price %> $$$.</p>
+<p>Duration: <%= session.duration %> Hours.</p>
+<p>Rating: <%= session.rating %> Stars.</p>
 <p>Status: <%= session.status %>.</p>
 <% end %>
 </ul>

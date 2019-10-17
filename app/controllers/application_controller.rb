@@ -1,14 +1,13 @@
 require './config/environment'
 #require 'pry'
 class ApplicationController < Sinatra::Base
-  #require configuration for sessions and password to work
+#require configuration for sessions and password to work
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "password_security"
   end
-
 #home screen where you can sign in
   get "/" do
     erb :index
@@ -48,5 +47,5 @@ class ApplicationController < Sinatra::Base
       Photographer.find(session[:photographer_id])
     end
   end
-
+#end of helper method
 end
