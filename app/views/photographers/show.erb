@@ -1,8 +1,10 @@
+
 <h1>Profile</h1>
 
-<h4> Full Name: </h4><p><%= @photographer.firstname %>, <%= @photographer.lastname %></p>
-
-<h4>Total of Sessions: </h4><p><%= @photographer.sessions.count %></p>
+<h2> Full Name: </h2><div id="answers"><%= @photographer.firstname %>, <%= @photographer.lastname %></div>
+<h2> Contact by: </h2><div id="answers"><%= @photographer.email %></div>
+<h2>Total of Sessions: </h2><div id="answers"><%= @photographer.sessions.count %></div>
+<h3>List of Sessions</h3>
 <ul>
 <% current_user.sessions.each do |session| %>
 <li><a href="/sessions/<%= session.id %>"><%= session.name %></a></li>
@@ -14,8 +16,10 @@
 <p>Status: <%= session.status %>.</p>
 <% end %>
 </ul>
+
+<h2>Total of Clients: </h2><div id="answers"><%= @photographer.clients.count %></div>
+<h3>List of Clients</h3>
 <ul>
-<h4>List of clients</h4>
   <% current_user.clients.each do |client| %>
   <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
   <% end %>

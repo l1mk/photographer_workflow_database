@@ -8,6 +8,9 @@ ActiveRecord::Base.establish_connection(
   :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
 )
 
+#require 'database_cleaner/active_record'
+#DatabaseCleaner.strategy = :truncation
+
 require './app/models/concerns/slugifiable'
 require './app/controllers/application_controller'
 require_all 'app'

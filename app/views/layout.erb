@@ -1,32 +1,30 @@
 <!doctype html>
 <html>
   <head>
-  <a href="/"><title>Photographer Workflow Database</title></a>
+    <title>Photographer Workflow Database</title>
+    <link rel="stylesheet" href="stylesheets/main.css">
   </head>
   <body>
-    <nav>
-      <% if logged_in? %>
+    <a href="/"><img src="images/LOGO.jpg" alt="juan s1u brand logo"></a>
+    <br>
+    <br>
+    <div id="title">Photographer Workflow Database</div>
+    <br>
+          <% if logged_in? %>
+          <a href="/photographers/<%= current_user.slug %>">User Profile </a>
+          <br>
+          <a href="/logout"> Log Out </a>
+          <p>Login as <%=current_user.username %>!</p>
+          <% else %>
+          <h2>Welcome!!!</h2>
+          <a href="/signup">Sign Up</a>
+          <br>
+          <a href="/login"> Sign In </a>
+          <%end %>
 
-        <a href="/photographers/<%= current_user.slug %>"> Profile </a>
-        <br>
-        <a href="/logout"> Log Out </a>
-        <p>Login as <%=current_user.username %>!</p>
-
-      <% else %>
-      <h1>Welcome to Photographer Workflow Database</h1>
-
-        <a href="/signup">Sign Up</a>
-        <br>
-        <a href="/login"> Sign In </a>
-      <%end %>
-
-    </nav>
     <div class="container">
 
-
       <%= yield %>
-
-
 
   </body>
 </html>
