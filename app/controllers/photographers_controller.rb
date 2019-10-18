@@ -47,7 +47,7 @@ class PhotographersController < Sinatra::Base
 #open up the details of photographer profile
     get "/photographers/:slug" do
       @photographer = Photographer.find_by_slug(params[:slug])
-      erb :"/photographers/show"
+      erb :"/photographers/show", :layout => :"views/layout"
     end
 #open up the editing form for photographer
     get "/photographers/:slug/edit" do

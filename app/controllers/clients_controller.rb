@@ -43,7 +43,7 @@ class ClientsController < Sinatra::Base
       @client = Client.find_by_id(params[:id])
       @sessions = Session.all
       @photographers = Photographer.all
-      erb :"/clients/show"
+      erb :"/clients/show", :layout => :layout
     end
 #open up the editing form for the object
     get "/clients/:id/edit" do
