@@ -5,7 +5,6 @@ class PhotographersController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    set :layout, 'app/views/layout'
     enable :sessions
     set :session_secret, "password_security"
   end

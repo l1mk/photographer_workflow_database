@@ -1,27 +1,26 @@
 <h1>Session Detail</h1>
 
-<h4> Name: </h4><p><%= @session.name %></p>
 
-<ul>
-<li><p>Name : <%= @session.name %></p></li>
-<li><p>Price: <%= @session.price %> $$$.</p></li>
-<li><p>Location: <%= @session.location %>.</p></li>
-<li><p>Date: <%= @session.date %>.</p></li>
-<li><p>Duration: <%= @session.duration %> Hours.</p></li>
-<li><p>Rating: <%= @session.rating %> Stars.</p></li>
-<li><p>Status: <%= @session.status %>.</p></li>
-</ul>
+<h2>Name : </h2><div id="answers"><%= @session.name %></div>
+<h2>Price: </h2><div id="answers"><%= @session.price %> $$$</div>
+<h2>Location: </h2><div id="answers"><%= @session.location %></div>
+<h2>Date: </h2><div id="answers"><%= @session.date %></div>
+<h2>Duration: </h2><div id="answers"><%= @session.duration %> Hours</div>
+<h2>Rating: </h2><div id="answers"><%= @session.rating %> Stars</div>
+<h2>Status: </h2><div id="answers"><%= @session.status %></div>
 
-<h4>By Photographer</h4>
-<a href="/photographers/<%= @photographer.slug %>"><%= @photographer.firstname %> <%= @photographer.lastname %></a></li>
-<br>
-<h4>For client</h4>
-<a href="/clients/<%= @client.id %>"><%= @client.firstname %> <%= @client.lastname %></a></li>
-<br>
+<h2>By Photographer</h2>
+<div id="answers"><a href="/photographers/<%= @photographer.slug %>"><%= @photographer.firstname %> <%= @photographer.lastname %></a></div>
+<h2>For client</h2>
+<div id="answers"><a href="/clients/<%= @client.id %>"><%= @client.firstname %> <%= @client.lastname %></a></div>
 
 <% if @photographer == current_user %>
-<h3><a href="/sessions/<%= @session.id %>/edit">Edit Session</a></h3>
-<h3><a href="/sessions/<%= @session.id %>/delete">Delete Session</a></h3>
+<div id="edits">
+<a href="/sessions/<%= @session.id %>/edit">Edit Session</a>
+<br>
+<a href="/sessions/<%= @session.id %>/delete">Delete Session</a>
+</div>
 <% end %>
-<h3><a href="/sessions">BACK</a></h3>
+
+<h3><a href="/sessions">Back to Sessions Index</a></h3>
 <h3><a href="/photographers">Back to Welcome Page</a></h3>

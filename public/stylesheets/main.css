@@ -35,12 +35,12 @@
     border-bottom: 2px solid #ccc;
     font-size: 24px;
     line-height: 36px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
 
   h3 {
     font-size: 18px;
-    line-height: 36px;
+    line-height: 24px;
   }
 
 	h4 {
@@ -50,7 +50,6 @@
 
   p {
 		font-size: 12px;
-    margin-bottom: 8px;
   }
 
   .main {
@@ -98,7 +97,7 @@
 		text-decoration: none;
 		text-transform: uppercase;
 		border: 3px solid;
-		border-color:black white black white;
+		border-color:#323232 white #323232 white;
 		padding: 5px;
 		letter-spacing: 10px;
 		text-shadow: 5px 3px lightgray;
@@ -111,4 +110,14 @@
 		margin-bottom: 16px;
 	}
 
+ #edits {
+	 border-top: 2px solid lightgray;
+	 border-bottom: 2px solid lightgray;
+	 font-size: 16px;
+ }
+
+ #footer {
+  background-color: #323232;
+	color: white;
+	padding: 1px;
 }

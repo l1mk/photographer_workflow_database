@@ -16,14 +16,14 @@
         <% end %>
       </ul>
 
-    <h3>List of Clients with links</h3>
+    <h3>List of Clients with links</h3><p><a href="/clients">see all</a></p>
         <ul>
           <% @clients.each do |client| %>
           <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></a></li>
           <% end %>
         </ul>
 
-  <h3>List of Sessions with links</h3>
+  <h3>List of Sessions with links</h3><p><a href="/sessions">see all</a></p>
     <ul>
       <% @sessions.each do |session| %>
       <li><a href="/sessions/<%= session.id %>">Session Type:<%= session.name %> / <%= session.date %></a></li>

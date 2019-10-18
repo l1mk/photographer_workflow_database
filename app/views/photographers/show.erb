@@ -4,7 +4,8 @@
 <h2> Full Name: </h2><div id="answers"><%= @photographer.firstname %>, <%= @photographer.lastname %></div>
 <h2> Contact by: </h2><div id="answers"><%= @photographer.email %></div>
 <h2>Total of Sessions: </h2><div id="answers"><%= @photographer.sessions.count %></div>
-<h3>List of Sessions</h3>
+<h3>- List of Sessions</h3>
+
 <ul>
 <% @photographer.sessions.each do |session| %>
 <li><p><a href="/sessions/<%= session.id %>"><%= session.name %></a></p></li>
@@ -18,14 +19,20 @@
 </ul>
 
 <h2>Total of Clients: </h2><div id="answers"><%= @photographer.clients.count %></div>
-<h3>List of Clients</h3>
+<h3> - List of Clients</h3>
+
 <ul>
   <% @photographer.clients.each do |client| %>
   <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
   <% end %>
 </ul>
+
 <% if @photographer == current_user %>
-<h3><a href="/photographers/<%= @photographer.slug %>/edit">Edit profile</a></h3>
-<h3><a href="/photographers/<%= @photographer.slug %>/delete">Delete profile</a></h3>
+<div id="edits">
+<a href="/photographers/<%= @photographer.slug %>/edit">Edit profile</a>
+<br>
+<a href="/photographers/<%= @photographer.slug %>/delete">Delete profile</a>
+</div>
 <% end %>
+
 <h3><a href="/photographers">Back to Welcome Page</a></h3>
