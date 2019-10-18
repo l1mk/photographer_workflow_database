@@ -30,7 +30,8 @@ class SessionsController < Sinatra::Base
       if logged_in?
         if !params[:name].empty? && !params[:price].empty? && !params[:date].empty? && !params[:duration].empty? && !params[:rating].empty? && !params[:status].empty? && !params[:location].empty?
           @session = Session.new(:name => params[:name], :price => params[:price], :date => params[:date], :duration => params[:duration], :rating => params[:rating], :status => params[:status], :location => params[:location])
-            if @client = Client.create(:firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email])
+            if !params[:firstname].empty? && !params[:lastname].empty? && !params[:email].empty?
+              @client = Client.create(:firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email])
               @session[:client_id] = @client.id
             else
               @session[:client_id] = (params[:client_id])
