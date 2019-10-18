@@ -5,6 +5,7 @@ class PhotographersController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
+    set :layout, 'app/views/layout'
     enable :sessions
     set :session_secret, "password_security"
   end
@@ -47,7 +48,7 @@ class PhotographersController < Sinatra::Base
 #open up the details of photographer profile
     get "/photographers/:slug" do
       @photographer = Photographer.find_by_slug(params[:slug])
-      erb :"/photographers/show", :layout => :"views/layout"
+      erb :"/photographers/show"
     end
 #open up the editing form for photographer
     get "/photographers/:slug/edit" do

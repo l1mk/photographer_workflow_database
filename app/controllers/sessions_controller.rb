@@ -52,7 +52,7 @@ class SessionsController < Sinatra::Base
       @session = Session.find_by_id(params[:id])
       @client = Client.find_by_id(@session.client_id)
       @photographer = Photographer.find_by_id(@session.photographer_id)
-      erb :"/sessions/show", :layout => :layout
+      erb :"/sessions/show"
     end
 #open up the editing form for the object
     get "/sessions/:id/edit" do

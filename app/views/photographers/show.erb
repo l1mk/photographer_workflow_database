@@ -6,8 +6,8 @@
 <h2>Total of Sessions: </h2><div id="answers"><%= @photographer.sessions.count %></div>
 <h3>List of Sessions</h3>
 <ul>
-<% current_user.sessions.each do |session| %>
-<li><a href="/sessions/<%= session.id %>"><%= session.name %></a></li>
+<% @photographer.sessions.each do |session| %>
+<li><p><a href="/sessions/<%= session.id %>"><%= session.name %></a></p></li>
 <p>Location: <%= session.location %>.</p>
 <p>Date: <%= session.date %>.</p>
 <p>Price: <%= session.price %> $$$.</p>
@@ -20,7 +20,7 @@
 <h2>Total of Clients: </h2><div id="answers"><%= @photographer.clients.count %></div>
 <h3>List of Clients</h3>
 <ul>
-  <% current_user.clients.each do |client| %>
+  <% @photographer.clients.each do |client| %>
   <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
   <% end %>
 </ul>
