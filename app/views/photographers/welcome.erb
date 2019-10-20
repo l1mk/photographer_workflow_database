@@ -26,6 +26,6 @@
   <h3>List of Sessions with links</h3><p><a href="/sessions">see all</a></p>
     <ul>
       <% @sessions.each do |session| %>
-      <li><a href="/sessions/<%= session.id %>">Session Type:<%= session.name %> / <%= session.date %></a></li>
+      <li><a href="/sessions/<%= session.id %>">Session Type:<%= session.name %> / <%= session.date %> taken by: <%= session.photographer.firstname %></a></li>
       <% end %>
     </ul>
