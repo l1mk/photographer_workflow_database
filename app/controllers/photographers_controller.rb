@@ -71,8 +71,9 @@ class PhotographersController < Sinatra::Base
     delete '/photographers/:slug' do
       if logged_in?
         @photographer = Photographer.find_by_slug(params[:slug])
-        session.clear
+        Session.delete_all(photographer_id: @photographer.id)
         @photographer.delete
+        session.clear
         redirect to '/'
       else
         redirect to '/login'

@@ -1,4 +1,4 @@
-<h3>Are you Sure you Want to Erase <%= @photographer.firstname %> Profile </h3>
+<h3>Are you Sure you Want to Erase <%= @photographer.firstname %> Profile and All his Sessions?</h3>
 
 <form action="/photographers/<%= @photographer.slug %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
