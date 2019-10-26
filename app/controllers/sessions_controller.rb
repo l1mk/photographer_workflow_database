@@ -1,14 +1,8 @@
 require './config/environment'
 #require 'pry'
 
-class SessionsController < Sinatra::Base
-#require configuration for sessions and password to work
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-    enable :sessions
-    set :session_secret, "password_security"
-  end
+class SessionsController < ApplicationController
+
 #bring the index website of the object
     get "/sessions" do
         @photographers = Photographer.all
@@ -38,6 +32,7 @@ class SessionsController < Sinatra::Base
             end
           @session[:photographer_id] = current_user.id
           @session.save
+          flash[:message] = "Successfully created a Session"
           redirect "/sessions"
         else
           redirect "/sessions"
@@ -50,42 +45,48 @@ class SessionsController < Sinatra::Base
 #open up the details page of the object
     get "/sessions/:id" do
       @session = Session.find_by_id(params[:id])
-      @client = Client.find_by_id(@session.client_id)
-      @photographer = Photographer.find_by_id(@session.photographer_id)
+      @client = @session.client
+      @photographer = @session.photographer
       erb :"/sessions/show"
     end
 #open up the editing form for the object
     get "/sessions/:id/edit" do
       @session = Session.find_by_id(params[:id])
-      @clients = Client.all
-      @photographers = Photographer.all
-      erb :"/sessions/edit"
+      redirect_if_not_owner(@session.photographer)
+        @clients = Client.all
+        @photographers = Photographer.all
+        erb :"/sessions/edit"
     end
 #take params from edit to update the data of the object
     patch "/sessions/:id" do
       @session = Session.find_by_id(params[:id])
+      if current_user == @session.photographer
       @session.update(:name => params[:name], :price => params[:price], :date => params[:date], :duration => params[:duration], :rating => params[:rating], :status => params[:status], :location => params[:location], :client_id => params[:client_id])
-    redirect "/sessions"
+      flash[:message] = "Successfully updated a Session"
+      end
+      redirect "/sessions"
     end
 #open up the delete website for client
     get "/sessions/:id/delete" do
       @session = Session.find_by_id(params[:id])
+      redirect_if_not_owner(@session.photographer)
       erb :"sessions/delete"
     end
 #accept the request from delete, and delete object
     delete '/sessions/:id' do
         @session = Session.find_by_id(params[:id])
+        if current_user == @session.photographer
         @session.destroy
+        flash[:message] = "Successfully delete the Session"
+        end
       redirect to "/sessions"
     end
 #Additional Methods for login authentication
     helpers do
-      def logged_in?
-        !!session[:photographer_id]
-      end
-
-      def current_user
-        Photographer.find(session[:photographer_id])
+      def redirect_if_not_owner(photographer)
+        if current_user != photographer
+          redirect "/sessions"
+        end
       end
     end
 #end of helper method

@@ -1,6 +1,5 @@
 <h1>Edit Client Profile</h1>
 <br>
-<% if @client.photographers.include?(current_user) %>
  <form action='/clients/<%= @client.id %>' method="post">
  <input id="hidden" type="hidden" name="_method" value="patch">
    <br>
@@ -17,9 +16,6 @@
     <input type="submit" name="submit" id="submit" value="Update">
   </form>
   <br>
-  <% else %>
-  Sorry Cant Edit a Client Profile from another Photographer
-  <% end %>
   <br>
   <br>
   <a href="/photographers">BACK</a>

@@ -1,13 +1,23 @@
 require './config/environment'
 #require 'pry'
-class PhotographersController < Sinatra::Base
-#require configuration for sessions and password to work
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-    enable :sessions
-    set :session_secret, "password_security"
-  end
+class PhotographersController < ApplicationController
+
+  #welcome screen after signup/sign in
+    get "/signup" do
+      if !logged_in?
+        erb :"photographers/new"
+      else
+        redirect  "/"
+      end
+    end
+  #welcome screen after signup/sign in
+    get "/login" do
+      if !logged_in?
+        erb :"photographers/login"
+      else
+        redirect  "/photographers"
+      end
+    end
 #bring the welcome website after login in
     get "/photographers" do
       if logged_in?
@@ -79,15 +89,4 @@ class PhotographersController < Sinatra::Base
         redirect to '/login'
       end
     end
-#Additional Methods for login authentication
-  helpers do
-    def logged_in?
-     !!session[:photographer_id]
-    end
-
-    def current_user
-     Photographer.find(session[:photographer_id])
-    end
-  end
-#end of helper method
 end

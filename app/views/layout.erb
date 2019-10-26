@@ -26,6 +26,13 @@
       <%= yield %>
     </div>
 
+
+  <% if flash.has?(:message) %>
+  <%= flash[:message] %>
+  <% end %>
+  <br>
+  <br>
+
   <footer>
     <div id="footer">
     <p>Created by Juan Siu</p>

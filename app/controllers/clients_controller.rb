@@ -1,18 +1,14 @@
 require './config/environment'
 #require 'pry'
-class ClientsController < Sinatra::Base
-#require configuration for sessions and password to work
-  configure do
-    set :public_folder, 'public'
-    set :views, 'app/views'
-    enable :sessions
-    set :session_secret, "password_security"
-  end
+class ClientsController < ApplicationController
+
 #bring the index website of the object
     get "/clients" do
         @photographers = Photographer.all
         @sessions = Session.all
         @clients = Client.all
+        @success_message = session[:success_message]
+        session[:success_message] = nil
         erb :"/clients/index"
     end
 #open up the form for the new client
@@ -29,6 +25,7 @@ class ClientsController < Sinatra::Base
         if !params[:firstname].empty? && !params[:lastname].empty? && !params[:email].empty?
           @client = Client.new(:firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email])
           @client.save
+          flash[:message] = "Successfully created new Client."
           redirect "/clients"
         else
           redirect "/clients"
@@ -48,14 +45,19 @@ class ClientsController < Sinatra::Base
 #open up the editing form for the object
     get "/clients/:id/edit" do
       @client = Client.find_by_id(params[:id])
+      if current_user == @client.photographer
       @sessions = Session.all
       @photographers = Photographer.all
       erb :'/clients/edit'
+      else
+      redirect "/clients/#{@client.id}"
+      end
     end
 #take params from edit to update the data of the object
     patch "/clients/:id" do
         @client = Client.find_by_id(params[:id])
       @client.update(:firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email])
+      flash[:message] = "Successfully updated Client"
       redirect "/clients"
     end
 #open up the delete website for client
@@ -67,17 +69,7 @@ class ClientsController < Sinatra::Base
     delete '/clients/:id' do
         @client = Client.find_by_id(params[:id])
         @client.delete
+        flash[:message] = "Successfully deleted the Client"
         redirect to '/clients'
     end
-#Additional Methods for login authentication
-    helpers do
-      def logged_in?
-        !!session[:photographer_id]
-      end
-
-      def current_user
-        Photographer.find(session[:photographer_id])
-      end
-    end
-#end of helper method
 end

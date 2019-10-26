@@ -1,4 +1,5 @@
 require './config/environment'
+require 'rack-flash'
 #require 'pry'
 class ApplicationController < Sinatra::Base
 #require configuration for sessions and password to work
@@ -6,32 +7,18 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    use Rack::Flash, :sweep => true
     set :session_secret, "password_security"
   end
 #home screen where you can sign in
   get "/" do
     erb :index
   end
-#welcome screen after signup/sign in
-  get "/signup" do
-    if !logged_in?
-    erb :"photographers/new"
-    else
-    redirect  "/"
-    end
-  end
-#welcome screen after signup/sign in
-  get "/login" do
-    if !logged_in?
-    erb :"photographers/login"
-    else
-    redirect  "/photographers"
-    end
-  end
 #Request to clear all session and logout
   get "/logout" do
     if logged_in?
    session.clear
+    flash[:message] = "Successfully Logout"
       redirect "/login"
     else
       redirect "/"
@@ -46,6 +33,10 @@ class ApplicationController < Sinatra::Base
     def current_user
       Photographer.find(session[:photographer_id])
     end
+
+    #def flash_types
+    #  [:success, :notice, :warning, :error]
+    #end
   end
 #end of helper method
 end

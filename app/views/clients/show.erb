@@ -24,12 +24,11 @@
   <% end %>
 </ul>
 
-<% if @client.photographers.include?(current_user) %>
 <div id="edits">
 <a href="/clients/<%= @client.id %>/edit">Edit profile</a>
 <br>
 <a href="/clients/<%= @client.id %>/delete">Delete profile</a>
 </div>
-<% end %>
+
 <h3><a href="/clients">Back to Clients Index</a></h3>
 <h3><a href="/photographers">Back to Welcome Page</a></h3>
