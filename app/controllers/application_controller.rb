@@ -17,8 +17,8 @@ class ApplicationController < Sinatra::Base
 #Request to clear all session and logout
   get "/logout" do
     if logged_in?
-   session.clear
-    flash[:message] = "Successfully Logout"
+      session.clear
+      flash[:message] = "Successfully Logout"
       redirect "/login"
     else
       redirect "/"

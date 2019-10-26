@@ -45,17 +45,13 @@ class ClientsController < ApplicationController
 #open up the editing form for the object
     get "/clients/:id/edit" do
       @client = Client.find_by_id(params[:id])
-      if current_user == @client.photographer
       @sessions = Session.all
       @photographers = Photographer.all
       erb :'/clients/edit'
-      else
-      redirect "/clients/#{@client.id}"
-      end
     end
 #take params from edit to update the data of the object
     patch "/clients/:id" do
-        @client = Client.find_by_id(params[:id])
+      @client = Client.find_by_id(params[:id])
       @client.update(:firstname => params[:firstname], :lastname => params[:lastname], :email => params[:email])
       flash[:message] = "Successfully updated Client"
       redirect "/clients"
@@ -67,9 +63,9 @@ class ClientsController < ApplicationController
     end
 #accept the request from delete, and delete object
     delete '/clients/:id' do
-        @client = Client.find_by_id(params[:id])
-        @client.delete
-        flash[:message] = "Successfully deleted the Client"
-        redirect to '/clients'
+      @client = Client.find_by_id(params[:id])
+      @client.delete
+      flash[:message] = "Successfully deleted the Client"
+      redirect to '/clients'
     end
 end
