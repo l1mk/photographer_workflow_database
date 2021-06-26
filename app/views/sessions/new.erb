@@ -27,14 +27,14 @@
       <input type="radio" name="status" id="status" value="Completed">Completed</input>
     <br>
     <h3>Choose Client:</h3>
-    <% @clients.each do |client| %>
-    <input type="radio" name="client_id" id="client_id" value="<%= client.id %>"><%= client.firstname %> <%= client.lastname %></input><br>
-    <% end %>
+      <% @clients.each do |client| %>
+        <input type="radio" name="client_id" id="client_id" value="<%= client.id %>"><%= client.firstname %> <%= client.lastname %></input><br>
+      <% end %>
     <br>
     <h3>or Create New Client:</h3>
-    <input type="text" id="first_name" name="firstname" placeholder="First Name">
-    <input type="text" id="last_name" name="lastname" placeholder="Last Name">
-    <input type="email" id="email" name="email" placeholder="Email Address">
+      <input type="text" id="first_name" name="firstname" placeholder="First Name">
+      <input type="text" id="last_name" name="lastname" placeholder="Last Name">
+      <input type="email" id="email" name="email" placeholder="Email Address">
     <br>
     <br>
     <input type="submit" name="submit" id="submit" value="Create">
