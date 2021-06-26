@@ -11,6 +11,7 @@ $cd photographer_workflow_database
 Configuration
 Dependencies and all configuration is done in environment.rb and config.ru. Database is stored in DB folder with all the migrations. Gemfile already has all the gems you will require so make sure you run:
 $bundle install
+(if you encounter an issue with fully running bundle install, due to thin version, try running this first $bundle update thin)
 To have rake and shotgun installed, and from there, run all your migrations:
 $rake db:migrate
 
