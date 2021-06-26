@@ -1,38 +1,38 @@
 
 <h1>Profile</h1>
-
+<br>
 <h2> Full Name: </h2><div id="answers"><%= @photographer.firstname %>, <%= @photographer.lastname %></div>
 <h2> Contact by: </h2><div id="answers"><%= @photographer.email %></div>
 <h2>Total of Sessions: </h2><div id="answers"><%= @photographer.sessions.count %></div>
 <h3>- List of Sessions</h3>
-
+<br>
 <ul>
 <% @photographer.sessions.each do |session| %>
-<li><p><a href="/sessions/<%= session.id %>"><%= session.name %></a></p></li>
-<p>Location: <%= session.location %>.</p>
-<p>Date: <%= session.date %>.</p>
-<p>Price: <%= session.price %> $$$.</p>
-<p>Duration: <%= session.duration %> Hours.</p>
-<p>Rating: <%= session.rating %> Stars.</p>
-<p>Status: <%= session.status %>.</p>
+  <li><p><a href="/sessions/<%= session.id %>"><%= session.name %></a></p></li>
+      <p>Location: <%= session.location %>.</p>
+      <p>Date: <%= session.date %>.</p>
+      <p>Price: <%= session.price %> $$$.</p>
+      <p>Duration: <%= session.duration %> Hours.</p>
+      <p>Rating: <%= session.rating %> Stars.</p>
+      <p>Status: <%= session.status %>.</p>
 <% end %>
 </ul>
-
+<br>
 <h2>Total of Clients: </h2><div id="answers"><%= @photographer.clients.count %></div>
 <h3> - List of Clients</h3>
-
+<br>
 <ul>
   <% @photographer.clients.each do |client| %>
-  <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
+    <li><a href="/clients/<%= client.id %>"><%= client.firstname %> <%= client.lastname %></li>
   <% end %>
 </ul>
-
-<% if @photographer == current_user %>
-<div id="edits">
-<a href="/photographers/<%= @photographer.slug %>/edit">Edit profile</a>
 <br>
-<a href="/photographers/<%= @photographer.slug %>/delete">Delete profile</a>
-</div>
+<% if @photographer == current_user %>
+  <div id="edits">
+    <a href="/photographers/<%= @photographer.slug %>/edit">Edit profile</a>
+    <br>
+    <a href="/photographers/<%= @photographer.slug %>/delete">Delete profile</a>
+  </div>
 <% end %>
-
+<br>
 <h3><a href="/photographers">Back to Welcome Page</a></h3>

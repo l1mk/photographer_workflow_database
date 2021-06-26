@@ -1,8 +1,6 @@
 require './config/environment'
-#require 'pry'
 
 class SessionsController < ApplicationController
-
 #bring the index website of the object
     get "/sessions" do
         @photographers = Photographer.all
@@ -41,7 +39,6 @@ class SessionsController < ApplicationController
         redirect "/login"
       end
     end
-
 #open up the details page of the object
     get "/sessions/:id" do
       @session = Session.find_by_id(params[:id])
@@ -81,7 +78,7 @@ class SessionsController < ApplicationController
         end
       redirect to "/sessions"
     end
-#Additional Methods for login authentication
+#Additional Helper Methods for login authentication
     helpers do
       def redirect_if_not_owner(photographer)
         if current_user != photographer
@@ -89,5 +86,5 @@ class SessionsController < ApplicationController
         end
       end
     end
-#end of helper method
+
 end

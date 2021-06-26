@@ -1,7 +1,6 @@
 require './config/environment'
-#require 'pry'
-class ClientsController < ApplicationController
 
+class ClientsController < ApplicationController
 #bring the index website of the object
     get "/clients" do
         @photographers = Photographer.all
@@ -34,7 +33,6 @@ class ClientsController < ApplicationController
         redirect "/login"
       end
     end
-
 #open up the details page of the object
     get "/clients/:id" do
       @client = Client.find_by_id(params[:id])

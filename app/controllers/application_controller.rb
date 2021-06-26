@@ -1,6 +1,6 @@
 require './config/environment'
 require 'rack-flash'
-#require 'pry'
+
 class ApplicationController < Sinatra::Base
 #require configuration for sessions and password to work
   configure do
@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
       redirect "/"
     end
   end
-#Additional Methods for login authentication
+#Additional Helper Methods for login authentication
   helpers do
     def logged_in?
       !!session[:photographer_id]
@@ -33,10 +33,6 @@ class ApplicationController < Sinatra::Base
     def current_user
       Photographer.find(session[:photographer_id])
     end
-
-    #def flash_types
-    #  [:success, :notice, :warning, :error]
-    #end
   end
-#end of helper method
+
 end

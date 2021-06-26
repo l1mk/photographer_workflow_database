@@ -1,5 +1,5 @@
 <h3>Are you Sure you Want to Erase the <%= @client.firstname %> Profile </h3>
-
+<br>
 <form action="/clients/<%= @client.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <input type="submit" value="delete">

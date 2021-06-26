@@ -1,21 +1,21 @@
 <h1>Edit Client Profile</h1>
 <br>
- <form action='/clients/<%= @client.id %>' method="post">
- <input id="hidden" type="hidden" name="_method" value="patch">
-   <br>
-    <h3>New Name:</h3>
-    <br>
-    <input type="text" id="firstname" name="firstname" placeholder="First Name" value="<%= @client.firstname %>">
-    <input type="text" id="lastname"name="lastname" placeholder="Last Name" value="<%= @client.lastname %>">
-    <br>
-    <h3>New Email:</h3>
-    <br>
-    <input type="email" id="email"name="email" placeholder="Email" value="<%= @client.email %>">
-    <br>
-    <br>
-    <input type="submit" name="submit" id="submit" value="Update">
-  </form>
+<form action='/clients/<%= @client.id %>' method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <br>
+  <h3>New Name:</h3>
+  <br>
+  <input type="text" id="firstname" name="firstname" placeholder="First Name" value="<%= @client.firstname %>">
+  <input type="text" id="lastname"name="lastname" placeholder="Last Name" value="<%= @client.lastname %>">
+  <br>
+  <h3>New Email:</h3>
+  <br>
+  <input type="email" id="email"name="email" placeholder="Email" value="<%= @client.email %>">
   <br>
   <br>
-  <br>
-  <a href="/photographers">BACK</a>
+  <input type="submit" name="submit" id="submit" value="Update">
+</form>
+<br>
+<br>
+<br>
+<a href="/photographers">BACK</a>

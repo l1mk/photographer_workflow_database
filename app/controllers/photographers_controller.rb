@@ -1,7 +1,6 @@
 require './config/environment'
-#require 'pry'
-class PhotographersController < ApplicationController
 
+class PhotographersController < ApplicationController
   #welcome screen after signup/sign in
     get "/signup" do
       if !logged_in?

@@ -1,12 +1,11 @@
 <h2>Session Listing<h2>
-  <ul><div id="answers">
-    <% @sessions.each do |session| %>
-    <li><a href="/sessions/<%= session.id %>"><%= session.name %> / <%= session.date %></a></li>
-    <% end %>
-  </ul></div>
-
-
-
+  <ul>
+    <div id="answers">
+      <% @sessions.each do |session| %>
+      <li><a href="/sessions/<%= session.id %>"><%= session.name %> / <%= session.date %></a></li>
+      <% end %>
+    </div>
+  </ul>
   <a href="/sessions/new">Create New Session</a>
   <h3><a href="/photographers">Back to Welcome Page</a></h3>
 <br>
